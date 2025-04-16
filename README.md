@@ -1,13 +1,15 @@
-# Task Master [![GitHub stars](https://img.shields.io/github/stars/eyaltoledano/claude-task-master?style=social)](https://github.com/eyaltoledano/claude-task-master/stargazers)
+# Agency Swarm MCP [![GitHub stars](https://img.shields.io/github/stars/VRSEN/agency-swarm-mcp?style=social)](https://github.com/VRSEN/agency-swarm-mcp/stargazers)
 
-[![CI](https://github.com/eyaltoledano/claude-task-master/actions/workflows/ci.yml/badge.svg)](https://github.com/eyaltoledano/claude-task-master/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/task-master-ai.svg)](https://badge.fury.io/js/task-master-ai) ![Discord Follow](https://dcbadge.limes.pink/api/server/https://discord.gg/2ms58QJjqp?style=flat) [![License: MIT with Commons Clause](https://img.shields.io/badge/license-MIT%20with%20Commons%20Clause-blue.svg)](LICENSE)
+[![CI](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/agency-swarm-mcp.svg)](https://badge.fury.io/js/agency-swarm-mcp) ![Discord Follow](https://dcbadge.limes.pink/api/server/https://discord.gg/cw2xBaWfFM?style=flat) [![License: MIT with Commons Clause](https://img.shields.io/badge/
+license-MIT%20with%20Commons%20Clause-blue.svg)](LICENSE)
 
-### By [@eyaltoledano](https://x.com/eyaltoledano) & [@RalphEcom](https://x.com/RalphEcom)
-
-[![Twitter Follow](https://img.shields.io/twitter/follow/eyaltoledano?style=flat)](https://x.com/eyaltoledano)
-[![Twitter Follow](https://img.shields.io/twitter/follow/RalphEcom?style=flat)](https://x.com/RalphEcom)
+**This is a minimal-difference fork of claude-task-master, maintained by VRSEN.**
+[![Twitter Follow](https://img.shields.io/twitter/follow/__vrsen__?style=flat)](https://x.com/__vrsen__)
+[![Twitter Follow](https://img.shields.io/twitter/follow/nicko_ai?style=flat)](https://x.com/nicko_ai)
 
 A task management system for AI-driven development with Claude, designed to work seamlessly with Cursor AI.
+
+> For agency-swarm projects, the dev_workflow.mdc protocol always applies. All other rules in .cursor/rules are inherited from Task Master unless otherwise noted.
 
 ## Requirements
 
@@ -18,12 +20,12 @@ A task management system for AI-driven development with Claude, designed to work
 
 ### Option 1 | MCP (Recommended):
 
-MCP (Model Control Protocol) provides the easiest way to get started with Task Master directly in your editor.
+MCP (Model Control Protocol) provides the easiest way to get started with Agency Swarm MCP directly in your editor.
 
 1. **Install the package**
 
 ```bash
-npm i -g task-master-ai
+npm i -g agency-swarm-mcp
 ```
 
 2. **Add the MCP config to your editor** (Cursor recommended, but it works with other text editors):
@@ -31,9 +33,9 @@ npm i -g task-master-ai
 ```json
 {
 	"mcpServers": {
-		"taskmaster-ai": {
+		"agency-swarm": {
 			"command": "npx",
-			"args": ["-y", "task-master-mcp"],
+			"args": ["-y", "agency-swarm-mcp"],
 			"env": {
 				"ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
 				"PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
@@ -51,10 +53,10 @@ npm i -g task-master-ai
 
 2. **Enable the MCP** in your editor
 
-3. **Prompt the AI** to initialize Task Master:
+3. **Prompt the AI** to initialize Agency Swarm MCP:
 
 ```
-Can you please initialize taskmaster-ai into my project?
+Can you please initialize agency-swarm-mcp into my project?
 ```
 
 4. **Use common commands** directly through your AI assistant:
@@ -72,10 +74,10 @@ Can you help me expand task 4?
 
 ```bash
 # Install globally
-npm install -g task-master-ai
+npm install -g agency-swarm-mcp
 
 # OR install locally within your project
-npm install task-master-ai
+npm install agency-swarm-mcp
 ```
 
 #### Initialize a new project
@@ -87,6 +89,8 @@ task-master init
 # If installed locally
 npx task-master-init
 ```
+
+> **Note:** The CLI command `task-master` is still available for compatibility, but the main entrypoint for MCP is `agency-swarm-mcp`.
 
 This will prompt you for project details and set up a new project with the necessary files and structure.
 
@@ -113,55 +117,47 @@ task-master generate
 
 For more detailed information, check out the documentation in the `docs` directory:
 
-- [Configuration Guide](docs/configuration.md) - Set up environment variables and customize Task Master
-- [Tutorial](docs/tutorial.md) - Step-by-step guide to getting started with Task Master
+- [Configuration Guide](docs/configuration.md) - Set up environment variables and customize Agency Swarm MCP
+- [Tutorial](docs/tutorial.md) - Step-by-step guide to getting started
 - [Command Reference](docs/command-reference.md) - Complete list of all available commands
 - [Task Structure](docs/task-structure.md) - Understanding the task format and features
 - [Example Interactions](docs/examples.md) - Common Cursor AI interaction examples
 
-## Troubleshooting
+## Publishing to npm
 
-### If `task-master init` doesn't respond:
-
-Try running it with Node directly:
+To publish a new version to npm:
 
 ```bash
-node node_modules/claude-task-master/scripts/init.js
+npm publish --access public
 ```
 
-Or clone the repository and run:
+## Keeping Your Fork Up-to-Date
+
+To keep your fork in sync with upstream changes:
 
 ```bash
-git clone https://github.com/eyaltoledano/claude-task-master.git
-cd claude-task-master
-node scripts/init.js
+git remote add upstream https://github.com/eyaltoledano/claude-task-master.git
+git fetch upstream
+git merge upstream/main
 ```
 
-## Contributors
-
-<a href="https://github.com/eyaltoledano/claude-task-master/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=eyaltoledano/claude-task-master" alt="Task Master project contributors" />
-</a>
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=eyaltoledano/claude-task-master&type=Timeline)](https://www.star-history.com/#eyaltoledano/claude-task-master&Timeline)
+Resolve any conflicts, test, and publish a new npm version if needed.
 
 ## Licensing
 
-Task Master is licensed under the MIT License with Commons Clause. This means you can:
+Agency Swarm MCP is licensed under the MIT License with Commons Clause. This means you can:
 
 ✅ **Allowed**:
 
-- Use Task Master for any purpose (personal, commercial, academic)
+- Use Agency Swarm MCP for any purpose (personal, commercial, academic)
 - Modify the code
 - Distribute copies
-- Create and sell products built using Task Master
+- Create and sell products built using Agency Swarm MCP
 
 ❌ **Not Allowed**:
 
-- Sell Task Master itself
-- Offer Task Master as a hosted service
-- Create competing products based on Task Master
+- Sell Agency Swarm MCP itself
+- Offer Agency Swarm MCP as a hosted service
+- Create competing products based on Agency Swarm MCP
 
 See the [LICENSE](LICENSE) file for the complete license text and [licensing details](docs/licensing.md) for more information.

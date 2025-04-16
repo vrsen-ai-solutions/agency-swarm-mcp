@@ -1,0 +1,310 @@
+# Task ID: 61
+# Title: Comprehensive Rebranding of Forked Repository to 'agency-swarm-mcp'
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Rebrand and adapt the forked claude-task-master repository into 'agency-swarm-mcp' with minimal changes, focusing on essential updates for npm publishing while maintaining compatibility with the upstream repository. Implement specific workflow improvements including custom context from .cursorrules and enhanced step-by-step development process.
+# Details:
+This task involves a focused rebranding of the forked claude-task-master repository to 'agency-swarm-mcp', implementing only essential changes:
+
+1. **Package Configuration Updates**:
+   - Update package.json with new name, description, and repository links
+   - Modify bin configuration if CLI command renaming is desired
+   - Ensure package.json is properly configured for npm publishing
+
+2. **Documentation Updates**:
+   - Rewrite README.md with new branding and updated installation/usage instructions
+   - Emphasize benefits of using our MCP server in Cursor (centralized updates, branding, custom rules)
+   - Include clear npm publishing instructions in documentation
+   - Add guidance for keeping the fork in sync with upstream repository
+   - Update the MCP config snippet for Cursor integration
+   - Include instructions for using MCP config and .cursorrules in template repos
+
+3. **Minimal Code Changes**:
+   - Only update CLI output or bin commands if rebranding is explicitly desired
+   - Leave source code largely unchanged to maintain compatibility with upstream
+   - Avoid deep refactoring of import statements or namespaces
+   - Adjust default prompt/context to include content from .cursorrules file
+   - Ensure step-by-step development process is followed by default
+   - Enable easy addition of custom tools in the future
+
+4. **.cursorrules File Updates**:
+   - Remove all code snippets
+   - Focus on planning and breaking down work into tasks
+   - Ensure relevant context is included in every task
+   - Instruct agents to browse the web for best APIs and documentation
+
+5. **Publishing Preparation**:
+   - Set up appropriate npm scripts for publishing if needed
+   - Create or update .npmignore file
+   - Verify license information is correct
+
+6. **Version Management**:
+   - Determine appropriate version numbering strategy
+   - Update version in package.json
+   - Create a simple changelog documenting the rebranding
+
+Implement these changes systematically, focusing on the minimal set of modifications needed to rebrand and publish the package while ensuring easy future updates from the upstream repository.
+
+# Test Strategy:
+Testing should focus on ensuring the minimal rebranding doesn't break functionality:
+
+1. **Package Configuration Testing**:
+   - Verify package.json changes are valid
+   - Test that bin commands work correctly if renamed
+   - Ensure all repository links are updated correctly
+
+2. **Documentation Testing**:
+   - Review all updated documentation for accuracy
+   - Verify installation instructions work as written
+   - Test the Cursor integration instructions with the updated MCP config snippet
+   - Ensure the instructions for keeping in sync with upstream are clear and accurate
+   - Verify template repo instructions for MCP config and .cursorrules are clear
+
+3. **Functionality Testing**:
+   - Verify core functionality remains intact after rebranding
+   - Test any renamed CLI commands to ensure they work properly
+   - Confirm Cursor integration still works as expected
+   - Test that default prompt/context correctly includes .cursorrules content
+   - Verify the step-by-step development process is properly enforced
+   - Test the ability to add custom tools
+
+4. **.cursorrules Testing**:
+   - Verify all code snippets have been removed
+   - Test that agents follow the planning and task breakdown approach
+   - Confirm relevant context is included in tasks
+   - Test that agents browse the web for API documentation as instructed
+
+5. **Publishing Test**:
+   - Use npm pack to create a tarball and inspect its contents
+   - Test installation from the tarball
+   - Verify the package can be published to a test npm registry
+
+6. **Upstream Compatibility**:
+   - Test the process of pulling updates from the upstream repository
+   - Verify that upstream changes can be integrated without conflicts
+
+Document all test results and address any issues before publishing the rebranded package.
+
+# Subtasks:
+## 1. Create Repository Inventory and Rebranding Plan [pending]
+### Dependencies: None
+### Description: Create a focused inventory of essential files and components that need rebranding, prioritizing package.json, documentation, and minimal code changes.
+### Details:
+Implementation steps:
+1. Clone the forked claude-task-master repository
+2. Create a simple document to track only essential files requiring changes
+3. Focus on package.json, README.md, and documentation files
+4. Identify any CLI output or bin commands that should be rebranded
+5. Create a minimal mapping document showing old names to new 'agency-swarm-mcp' names
+6. Develop a streamlined rebranding approach that minimizes code changes
+7. Document the strategy for maintaining compatibility with upstream repository
+
+Testing approach:
+- Review the inventory to ensure it covers only essential components
+- Verify the rebranding plan maintains upstream compatibility
+- Ensure the approach minimizes unnecessary changes
+
+## 2. Update Package Configuration and Core Metadata [pending]
+### Dependencies: 61.1
+### Description: Modify package.json and essential configuration files to reflect the new branding and prepare for npm publishing.
+### Details:
+Implementation steps:
+1. Update package.json with new name 'agency-swarm-mcp'
+2. Modify package description, repository links, and author information
+3. Update bin configuration if CLI command renaming is desired
+4. Verify LICENSE file is appropriate
+5. Create or update .npmignore file for publishing
+6. Update version number according to semantic versioning
+7. Create initial CHANGELOG.md documenting the rebranding
+
+Testing approach:
+- Run npm install to verify package.json is valid
+- Test bin commands if renamed
+- Verify git operations work with updated configuration
+
+## 9. Minimal CLI Command Updates [pending]
+### Dependencies: 61.2
+### Description: Selectively update CLI command names or output text only if rebranding is explicitly desired, otherwise leave as-is.
+### Details:
+Implementation steps:
+1. Determine if CLI command renaming is necessary for branding purposes
+2. If needed, update primary command name in bin configuration
+3. Modify any CLI output text that displays the old name
+4. Update help text that references the old name
+5. Leave internal code structure largely unchanged
+
+Testing approach:
+- Test renamed commands to ensure they function correctly
+- Verify help text displays the correct branding
+- Ensure all CLI functionality works as expected
+
+## 5. Update Documentation and README [pending]
+### Dependencies: 61.2
+### Description: Rewrite all documentation files to reflect the new branding and update installation/usage instructions.
+### Details:
+Implementation steps:
+1. Completely rewrite README.md with new branding
+2. Update installation instructions for the renamed package
+3. Modify usage examples to use new CLI commands if renamed
+4. Update the MCP config snippet for Cursor integration
+5. Add clear instructions for npm publishing
+6. Include detailed guidance for keeping the fork in sync with upstream
+7. Update any URLs pointing to the old repository
+8. Review and update any essential markdown files or documentation
+9. Emphasize benefits of using our MCP server in Cursor (centralized updates, branding, custom rules)
+10. Include instructions for using MCP config and .cursorrules in template repos
+
+Testing approach:
+- Verify all links in documentation work
+- Follow installation instructions to ensure they're accurate
+- Test the Cursor integration instructions
+- Verify the upstream sync instructions are clear and functional
+- Ensure template repo instructions are clear and accurate
+
+## 10. Document Cursor Integration [pending]
+### Dependencies: 61.5
+### Description: Update documentation to clearly explain the existing Cursor integration capabilities.
+### Details:
+Implementation steps:
+1. Document the current Cursor integration capabilities
+2. Update the MCP config snippet in the README with new branding
+3. Create clear step-by-step instructions for Cursor users
+4. Include examples of common Cursor integration scenarios
+5. Ensure documentation reflects that Cursor integration is already supported
+
+Testing approach:
+- Verify the updated MCP config snippet works correctly
+- Test the integration instructions in a Cursor environment
+- Ensure documentation accurately reflects existing functionality
+
+## 11. Prepare for Publishing with Minimal Changes [pending]
+### Dependencies: 61.2, 61.5, 61.9, 61.10
+### Description: Finalize npm publishing configuration and perform focused testing on the essential changes.
+### Details:
+Implementation steps:
+1. Verify package.json is properly configured for npm publishing
+2. Ensure all dependencies are correctly specified
+3. Test the rebranded package with minimal changes
+4. Perform installation testing from npm
+5. Finalize version number for initial release
+6. Complete CHANGELOG.md with the focused rebranding changes
+7. Create release notes for GitHub emphasizing the minimal change approach
+8. Document the strategy for maintaining compatibility with upstream repository
+
+Testing approach:
+- Perform clean installation testing in isolated environment
+- Test global installation if CLI commands are included
+- Verify core functionality works end-to-end
+- Test npm publish process using npm pack or a test registry
+- Validate the process for pulling updates from upstream
+
+## 12. Document Upstream Synchronization Process [pending]
+### Dependencies: 61.5
+### Description: Create detailed documentation on how to keep the fork in sync with the upstream repository.
+### Details:
+Implementation steps:
+1. Document the git commands for adding the upstream remote
+2. Create step-by-step instructions for fetching and merging upstream changes
+3. Provide guidance on handling merge conflicts
+4. Explain how to maintain custom branding while incorporating upstream updates
+5. Include examples of common synchronization scenarios
+6. Add recommendations for frequency of synchronization
+
+Testing approach:
+- Test the documented synchronization process
+- Verify instructions work with actual upstream changes
+- Ensure the process preserves custom branding and modifications
+
+## 13. Implement Default Prompt/Context Customization [pending]
+### Dependencies: 61.1
+### Description: Modify the MCP server to include content from .cursorrules file in the default prompt/context.
+### Details:
+Implementation steps:
+1. Identify the code responsible for generating default prompts/context in the MCP server
+2. Create a mechanism to read and parse the .cursorrules file
+3. Implement logic to inject .cursorrules content into the default prompt/context
+4. Ensure the modification is minimal and maintains compatibility with upstream
+5. Add configuration options to enable/disable this feature if needed
+6. Document the implementation approach for future reference
+
+Testing approach:
+- Verify the .cursorrules content is correctly included in the prompt/context
+- Test with various .cursorrules file formats and contents
+- Ensure the feature doesn't break existing functionality
+- Confirm the implementation remains compatible with upstream changes
+
+## 14. Enhance Step-by-Step Development Process [pending]
+### Dependencies: 61.1, 61.13
+### Description: Modify the MCP server to ensure the step-by-step development process is followed by default.
+### Details:
+Implementation steps:
+1. Identify how to enforce the step-by-step development process (planning, breaking down work, testing)
+2. Implement changes to ensure this workflow is followed by default
+3. Consider adding specific prompts or context that guide agents through this process
+4. Ensure modifications are minimal and focused on workflow improvement
+5. Document the implementation approach and rationale
+
+Testing approach:
+- Verify agents follow the step-by-step development process by default
+- Test that planning and task breakdown occur before implementation
+- Confirm that testing is included for each tool/component
+- Ensure the workflow improvements don't disrupt other functionality
+
+## 15. Create and Update .cursorrules File [pending]
+### Dependencies: 61.1
+### Description: Develop a .cursorrules file that focuses on planning and task breakdown while removing code snippets.
+### Details:
+Implementation steps:
+1. Review the current .cursorrules file if it exists
+2. Remove all code snippets from the file
+3. Add instructions focusing on planning and breaking down work into tasks
+4. Include guidance to ensure relevant context is included in every task
+5. Add instructions for agents to browse the web for best APIs and documentation
+6. Ensure the file is properly formatted and compatible with the MCP server
+7. Document the purpose and structure of the .cursorrules file
+
+Testing approach:
+- Verify the .cursorrules file is correctly processed by the MCP server
+- Test that agents follow the planning and task breakdown instructions
+- Confirm that code snippets are not included in responses
+- Ensure agents include relevant context in tasks as instructed
+- Verify agents browse the web for API documentation when appropriate
+
+## 16. Enable Easy Addition of Custom Tools [pending]
+### Dependencies: 61.1, 61.13
+### Description: Implement a mechanism to easily add custom tools to the MCP server in the future.
+### Details:
+Implementation steps:
+1. Analyze the current tool integration mechanism in the MCP server
+2. Design a simplified approach for adding custom tools
+3. Implement minimal changes to support this extensibility
+4. Create a template or example for adding new tools
+5. Document the process for adding custom tools
+6. Ensure the implementation remains compatible with upstream
+
+Testing approach:
+- Create a simple test tool to verify the custom tool integration works
+- Test that the tool can be properly invoked and used
+- Verify the documentation accurately describes the process
+- Ensure the extensibility mechanism doesn't break existing functionality
+
+## 17. Create Template Repository Instructions [pending]
+### Dependencies: 61.5, 61.15
+### Description: Develop clear instructions for using the MCP config and .cursorrules in template repositories.
+### Details:
+Implementation steps:
+1. Create comprehensive instructions for template repository setup
+2. Include guidance on incorporating MCP config in template repos
+3. Provide instructions for including and customizing .cursorrules
+4. Develop examples of best practices for template repository configuration
+5. Create documentation that emphasizes the benefits of using our MCP server
+6. Include troubleshooting guidance for common issues
+
+Testing approach:
+- Test the instructions by setting up a new template repository
+- Verify the MCP config works correctly in the template
+- Test that .cursorrules is properly integrated
+- Ensure the documentation is clear and easy to follow
+- Get feedback from potential users on the clarity of instructions
+

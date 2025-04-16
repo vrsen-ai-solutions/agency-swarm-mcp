@@ -1,12 +1,12 @@
 {
-	"name": "task-master-ai",
-	"version": "0.11.0",
-	"description": "A task management system for ambitious AI-driven development that doesn't overwhelm and confuse Cursor.",
+	"name": "agency-swarm-mcp",
+	"version": "1.0.0",
+	"description": "A task management system for AI-driven development, forked from claude-task-master, with seamless Cursor integration.",
 	"main": "index.js",
 	"type": "module",
 	"bin": {
 		"task-master": "bin/task-master.js",
-		"task-master-mcp": "mcp-server/server.js"
+		"agency-swarm-mcp": "mcp-server/server.js"
 	},
 	"scripts": {
 		"test": "node --experimental-vm-modules node_modules/.bin/jest",
@@ -35,7 +35,7 @@
 		"mcp",
 		"context"
 	],
-	"author": "Eyal Toledano",
+	"author": "VRSEN Team",
 	"license": "MIT WITH Commons-Clause",
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.39.0",
@@ -63,11 +63,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/eyaltoledano/claude-task-master.git"
+		"url": "git+https://github.com/VRSEN/agency-swarm-mcp.git"
 	},
-	"homepage": "https://github.com/eyaltoledano/claude-task-master#readme",
+	"homepage": "https://github.com/VRSEN/agency-swarm-mcp#readme",
 	"bugs": {
-		"url": "https://github.com/eyaltoledano/claude-task-master/issues"
+		"url": "https://github.com/VRSEN/agency-swarm-mcp/issues"
 	},
 	"files": [
 		"scripts/init.js",
@@ -93,5 +93,8 @@
 		"mock-fs": "^5.5.0",
 		"prettier": "^3.5.3",
 		"supertest": "^7.1.0"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

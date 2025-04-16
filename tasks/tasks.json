@@ -2736,6 +2736,154 @@
       "status": "pending",
       "dependencies": [],
       "priority": "medium"
+    },
+    {
+      "id": 61,
+      "title": "Comprehensive Rebranding of Forked Repository to 'agency-swarm-mcp'",
+      "description": "Rebrand and adapt the forked claude-task-master repository into 'agency-swarm-mcp' with minimal changes, focusing on essential updates for npm publishing while maintaining compatibility with the upstream repository. Implement specific workflow improvements including custom context from .cursorrules and enhanced step-by-step development process.",
+      "details": "This task involves a focused rebranding of the forked claude-task-master repository to 'agency-swarm-mcp', implementing only essential changes:\n\n1. **Package Configuration Updates**:\n   - Update package.json with new name, description, and repository links\n   - Modify bin configuration if CLI command renaming is desired\n   - Ensure package.json is properly configured for npm publishing\n\n2. **Documentation Updates**:\n   - Rewrite README.md with new branding and updated installation/usage instructions\n   - Emphasize benefits of using our MCP server in Cursor (centralized updates, branding, custom rules)\n   - Include clear npm publishing instructions in documentation\n   - Add guidance for keeping the fork in sync with upstream repository\n   - Update the MCP config snippet for Cursor integration\n   - Include instructions for using MCP config and .cursorrules in template repos\n\n3. **Minimal Code Changes**:\n   - Only update CLI output or bin commands if rebranding is explicitly desired\n   - Leave source code largely unchanged to maintain compatibility with upstream\n   - Avoid deep refactoring of import statements or namespaces\n   - Adjust default prompt/context to include content from .cursorrules file\n   - Ensure step-by-step development process is followed by default\n   - Enable easy addition of custom tools in the future\n\n4. **.cursorrules File Updates**:\n   - Remove all code snippets\n   - Focus on planning and breaking down work into tasks\n   - Ensure relevant context is included in every task\n   - Instruct agents to browse the web for best APIs and documentation\n\n5. **Publishing Preparation**:\n   - Set up appropriate npm scripts for publishing if needed\n   - Create or update .npmignore file\n   - Verify license information is correct\n\n6. **Version Management**:\n   - Determine appropriate version numbering strategy\n   - Update version in package.json\n   - Create a simple changelog documenting the rebranding\n\nImplement these changes systematically, focusing on the minimal set of modifications needed to rebrand and publish the package while ensuring easy future updates from the upstream repository.",
+      "testStrategy": "Testing should focus on ensuring the minimal rebranding doesn't break functionality:\n\n1. **Package Configuration Testing**:\n   - Verify package.json changes are valid\n   - Test that bin commands work correctly if renamed\n   - Ensure all repository links are updated correctly\n\n2. **Documentation Testing**:\n   - Review all updated documentation for accuracy\n   - Verify installation instructions work as written\n   - Test the Cursor integration instructions with the updated MCP config snippet\n   - Ensure the instructions for keeping in sync with upstream are clear and accurate\n   - Verify template repo instructions for MCP config and .cursorrules are clear\n\n3. **Functionality Testing**:\n   - Verify core functionality remains intact after rebranding\n   - Test any renamed CLI commands to ensure they work properly\n   - Confirm Cursor integration still works as expected\n   - Test that default prompt/context correctly includes .cursorrules content\n   - Verify the step-by-step development process is properly enforced\n   - Test the ability to add custom tools\n\n4. **.cursorrules Testing**:\n   - Verify all code snippets have been removed\n   - Test that agents follow the planning and task breakdown approach\n   - Confirm relevant context is included in tasks\n   - Test that agents browse the web for API documentation as instructed\n\n5. **Publishing Test**:\n   - Use npm pack to create a tarball and inspect its contents\n   - Test installation from the tarball\n   - Verify the package can be published to a test npm registry\n\n6. **Upstream Compatibility**:\n   - Test the process of pulling updates from the upstream repository\n   - Verify that upstream changes can be integrated without conflicts\n\nDocument all test results and address any issues before publishing the rebranded package.",
+      "status": "pending",
+      "dependencies": [],
+      "priority": "medium",
+      "subtasks": [
+        {
+          "id": 1,
+          "title": "Create Repository Inventory and Rebranding Plan",
+          "description": "Create a focused inventory of essential files and components that need rebranding, prioritizing package.json, documentation, and minimal code changes.",
+          "dependencies": [],
+          "details": "Implementation steps:\n1. Clone the forked claude-task-master repository\n2. Create a simple document to track only essential files requiring changes\n3. Focus on package.json, README.md, and documentation files\n4. Identify any CLI output or bin commands that should be rebranded\n5. Create a minimal mapping document showing old names to new 'agency-swarm-mcp' names\n6. Develop a streamlined rebranding approach that minimizes code changes\n7. Document the strategy for maintaining compatibility with upstream repository\n\nTesting approach:\n- Review the inventory to ensure it covers only essential components\n- Verify the rebranding plan maintains upstream compatibility\n- Ensure the approach minimizes unnecessary changes",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 2,
+          "title": "Update Package Configuration and Core Metadata",
+          "description": "Modify package.json and essential configuration files to reflect the new branding and prepare for npm publishing.",
+          "dependencies": [
+            1
+          ],
+          "details": "Implementation steps:\n1. Update package.json with new name 'agency-swarm-mcp'\n2. Modify package description, repository links, and author information\n3. Update bin configuration if CLI command renaming is desired\n4. Verify LICENSE file is appropriate\n5. Create or update .npmignore file for publishing\n6. Update version number according to semantic versioning\n7. Create initial CHANGELOG.md documenting the rebranding\n\nTesting approach:\n- Run npm install to verify package.json is valid\n- Test bin commands if renamed\n- Verify git operations work with updated configuration",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 9,
+          "title": "Minimal CLI Command Updates",
+          "description": "Selectively update CLI command names or output text only if rebranding is explicitly desired, otherwise leave as-is.",
+          "dependencies": [
+            2
+          ],
+          "details": "Implementation steps:\n1. Determine if CLI command renaming is necessary for branding purposes\n2. If needed, update primary command name in bin configuration\n3. Modify any CLI output text that displays the old name\n4. Update help text that references the old name\n5. Leave internal code structure largely unchanged\n\nTesting approach:\n- Test renamed commands to ensure they function correctly\n- Verify help text displays the correct branding\n- Ensure all CLI functionality works as expected",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 5,
+          "title": "Update Documentation and README",
+          "description": "Rewrite all documentation files to reflect the new branding and update installation/usage instructions.",
+          "dependencies": [
+            2
+          ],
+          "details": "Implementation steps:\n1. Completely rewrite README.md with new branding\n2. Update installation instructions for the renamed package\n3. Modify usage examples to use new CLI commands if renamed\n4. Update the MCP config snippet for Cursor integration\n5. Add clear instructions for npm publishing\n6. Include detailed guidance for keeping the fork in sync with upstream\n7. Update any URLs pointing to the old repository\n8. Review and update any essential markdown files or documentation\n9. Emphasize benefits of using our MCP server in Cursor (centralized updates, branding, custom rules)\n10. Include instructions for using MCP config and .cursorrules in template repos\n\nTesting approach:\n- Verify all links in documentation work\n- Follow installation instructions to ensure they're accurate\n- Test the Cursor integration instructions\n- Verify the upstream sync instructions are clear and functional\n- Ensure template repo instructions are clear and accurate",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 10,
+          "title": "Document Cursor Integration",
+          "description": "Update documentation to clearly explain the existing Cursor integration capabilities.",
+          "dependencies": [
+            5
+          ],
+          "details": "Implementation steps:\n1. Document the current Cursor integration capabilities\n2. Update the MCP config snippet in the README with new branding\n3. Create clear step-by-step instructions for Cursor users\n4. Include examples of common Cursor integration scenarios\n5. Ensure documentation reflects that Cursor integration is already supported\n\nTesting approach:\n- Verify the updated MCP config snippet works correctly\n- Test the integration instructions in a Cursor environment\n- Ensure documentation accurately reflects existing functionality",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 11,
+          "title": "Prepare for Publishing with Minimal Changes",
+          "description": "Finalize npm publishing configuration and perform focused testing on the essential changes.",
+          "dependencies": [
+            2,
+            5,
+            9,
+            10
+          ],
+          "details": "Implementation steps:\n1. Verify package.json is properly configured for npm publishing\n2. Ensure all dependencies are correctly specified\n3. Test the rebranded package with minimal changes\n4. Perform installation testing from npm\n5. Finalize version number for initial release\n6. Complete CHANGELOG.md with the focused rebranding changes\n7. Create release notes for GitHub emphasizing the minimal change approach\n8. Document the strategy for maintaining compatibility with upstream repository\n\nTesting approach:\n- Perform clean installation testing in isolated environment\n- Test global installation if CLI commands are included\n- Verify core functionality works end-to-end\n- Test npm publish process using npm pack or a test registry\n- Validate the process for pulling updates from upstream",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 12,
+          "title": "Document Upstream Synchronization Process",
+          "description": "Create detailed documentation on how to keep the fork in sync with the upstream repository.",
+          "dependencies": [
+            5
+          ],
+          "details": "Implementation steps:\n1. Document the git commands for adding the upstream remote\n2. Create step-by-step instructions for fetching and merging upstream changes\n3. Provide guidance on handling merge conflicts\n4. Explain how to maintain custom branding while incorporating upstream updates\n5. Include examples of common synchronization scenarios\n6. Add recommendations for frequency of synchronization\n\nTesting approach:\n- Test the documented synchronization process\n- Verify instructions work with actual upstream changes\n- Ensure the process preserves custom branding and modifications",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 13,
+          "title": "Implement Default Prompt/Context Customization",
+          "description": "Modify the MCP server to include content from .cursorrules file in the default prompt/context.",
+          "dependencies": [
+            1
+          ],
+          "details": "Implementation steps:\n1. Identify the code responsible for generating default prompts/context in the MCP server\n2. Create a mechanism to read and parse the .cursorrules file\n3. Implement logic to inject .cursorrules content into the default prompt/context\n4. Ensure the modification is minimal and maintains compatibility with upstream\n5. Add configuration options to enable/disable this feature if needed\n6. Document the implementation approach for future reference\n\nTesting approach:\n- Verify the .cursorrules content is correctly included in the prompt/context\n- Test with various .cursorrules file formats and contents\n- Ensure the feature doesn't break existing functionality\n- Confirm the implementation remains compatible with upstream changes",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 14,
+          "title": "Enhance Step-by-Step Development Process",
+          "description": "Modify the MCP server to ensure the step-by-step development process is followed by default.",
+          "dependencies": [
+            1,
+            13
+          ],
+          "details": "Implementation steps:\n1. Identify how to enforce the step-by-step development process (planning, breaking down work, testing)\n2. Implement changes to ensure this workflow is followed by default\n3. Consider adding specific prompts or context that guide agents through this process\n4. Ensure modifications are minimal and focused on workflow improvement\n5. Document the implementation approach and rationale\n\nTesting approach:\n- Verify agents follow the step-by-step development process by default\n- Test that planning and task breakdown occur before implementation\n- Confirm that testing is included for each tool/component\n- Ensure the workflow improvements don't disrupt other functionality",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 15,
+          "title": "Create and Update .cursorrules File",
+          "description": "Develop a .cursorrules file that focuses on planning and task breakdown while removing code snippets.",
+          "dependencies": [
+            1
+          ],
+          "details": "Implementation steps:\n1. Review the current .cursorrules file if it exists\n2. Remove all code snippets from the file\n3. Add instructions focusing on planning and breaking down work into tasks\n4. Include guidance to ensure relevant context is included in every task\n5. Add instructions for agents to browse the web for best APIs and documentation\n6. Ensure the file is properly formatted and compatible with the MCP server\n7. Document the purpose and structure of the .cursorrules file\n\nTesting approach:\n- Verify the .cursorrules file is correctly processed by the MCP server\n- Test that agents follow the planning and task breakdown instructions\n- Confirm that code snippets are not included in responses\n- Ensure agents include relevant context in tasks as instructed\n- Verify agents browse the web for API documentation when appropriate",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 16,
+          "title": "Enable Easy Addition of Custom Tools",
+          "description": "Implement a mechanism to easily add custom tools to the MCP server in the future.",
+          "dependencies": [
+            1,
+            13
+          ],
+          "details": "Implementation steps:\n1. Analyze the current tool integration mechanism in the MCP server\n2. Design a simplified approach for adding custom tools\n3. Implement minimal changes to support this extensibility\n4. Create a template or example for adding new tools\n5. Document the process for adding custom tools\n6. Ensure the implementation remains compatible with upstream\n\nTesting approach:\n- Create a simple test tool to verify the custom tool integration works\n- Test that the tool can be properly invoked and used\n- Verify the documentation accurately describes the process\n- Ensure the extensibility mechanism doesn't break existing functionality",
+          "status": "pending",
+          "parentTaskId": 61
+        },
+        {
+          "id": 17,
+          "title": "Create Template Repository Instructions",
+          "description": "Develop clear instructions for using the MCP config and .cursorrules in template repositories.",
+          "dependencies": [
+            5,
+            15
+          ],
+          "details": "Implementation steps:\n1. Create comprehensive instructions for template repository setup\n2. Include guidance on incorporating MCP config in template repos\n3. Provide instructions for including and customizing .cursorrules\n4. Develop examples of best practices for template repository configuration\n5. Create documentation that emphasizes the benefits of using our MCP server\n6. Include troubleshooting guidance for common issues\n\nTesting approach:\n- Test the instructions by setting up a new template repository\n- Verify the MCP config works correctly in the template\n- Test that .cursorrules is properly integrated\n- Ensure the documentation is clear and easy to follow\n- Get feedback from potential users on the clarity of instructions",
+          "status": "pending",
+          "parentTaskId": 61
+        }
+      ]
     }
   ]
 }
