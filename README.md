@@ -1,15 +1,17 @@
 # Agency Swarm MCP [![GitHub stars](https://img.shields.io/github/stars/VRSEN/agency-swarm-mcp?style=social)](https://github.com/VRSEN/agency-swarm-mcp/stargazers)
 
-[![CI](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/agency-swarm-mcp.svg)](https://badge.fury.io/js/agency-swarm-mcp) ![Discord Follow](https://dcbadge.limes.pink/api/server/https://discord.gg/cw2xBaWfFM?style=flat) [![License: MIT with Commons Clause](https://img.shields.io/badge/
-license-MIT%20with%20Commons%20Clause-blue.svg)](LICENSE)
+> Agency Swarm MCP is a minimally-different fork of Task Master, maintained by VRSEN. All workflow, rules, and documentation are specific to Agency Swarm MCP. For most users, follow the instructions below.
+
+[![CI](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/agency-swarm-mcp.svg)](https://badge.fury.io/js/agency-swarm-mcp) ![Discord Follow](https://dcbadge.limes.pink/api/server/https://discord.gg/cw2xBaWfFM?style=flat) [![License: MIT with Commons Clause](https://img.shields.io/badge/license-MIT%20with%20Commons%20Clause-blue.svg)](LICENSE)
 
 **This is a minimal-difference fork of claude-task-master, maintained by VRSEN.**
+
 [![Twitter Follow](https://img.shields.io/twitter/follow/__vrsen__?style=flat)](https://x.com/__vrsen__)
 [![Twitter Follow](https://img.shields.io/twitter/follow/nicko_ai?style=flat)](https://x.com/nicko_ai)
 
 A task management system for AI-driven development with Claude, designed to work seamlessly with Cursor AI.
 
-> For agency-swarm projects, the dev_workflow.mdc protocol always applies. All other rules in .cursor/rules are inherited from Task Master unless otherwise noted.
+> For agency-swarm projects, the planning and task breakdown protocol in `agency_swarm.mdc` always applies. All other rules in `.cursor/rules` are inherited from Task Master unless otherwise noted.
 
 ## Requirements
 
@@ -113,6 +115,13 @@ task-master next
 task-master generate
 ```
 
+## Why Use Agency Swarm MCP with Cursor?
+
+- Add our MCP to Cursor once, and you get our workflow, rules, and updates automatically—no manual rule copying or setup in every project.
+- All AI rules and best practices are bundled and always active when using our MCP.
+- Updates to the MCP or rules are delivered centrally—just update the npm package to get improvements.
+- Cursor integration is simple: add the JSON config, and you're ready to go.
+
 ## Documentation
 
 For more detailed information, check out the documentation in the `docs` directory:
@@ -161,3 +170,7 @@ Agency Swarm MCP is licensed under the MIT License with Commons Clause. This mea
 - Create competing products based on Agency Swarm MCP
 
 See the [LICENSE](LICENSE) file for the complete license text and [licensing details](docs/licensing.md) for more information.
+
+## Upstream: Task Master
+
+This project is based on [Task Master](https://github.com/eyaltoledano/claude-task-master). Most users do not need to reference upstream docs unless contributing to core or troubleshooting advanced issues. All rules in `.cursor/rules` are inherited from Task Master unless otherwise noted.
