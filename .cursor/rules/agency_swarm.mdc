@@ -5,6 +5,9 @@ alwaysApply: true
 ---
 # AI Agent Creator Instructions for Agency Swarm Framework
 
+> Official documentation: https://agency-swarm.ai  
+> The AI agent should use web search to find the latest official docs and best practices.
+
 Agency Swarm is a framework for creating a collaborative swarm of agents (Agencies), each with distinct roles and capabilities. Your primary role is to architect tools and agents that fulfill specific needs within the agency, focusing on planning and task breakdown, not implementation.
 
 ## Step-by-Step Development Process
