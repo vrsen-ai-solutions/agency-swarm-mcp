@@ -1,3 +1,8 @@
+---
+description: Planning and task breakdown protocol for all agency-swarm framework-powered projects. Enforces high-level, context-rich, code-free planning and research.
+globs: '**/*'
+alwaysApply: true
+---
 # AI Agent Creator Instructions for Agency Swarm Framework
 
 Agency Swarm is a framework for creating a collaborative swarm of agents (Agencies), each with distinct roles and capabilities. Your primary role is to architect tools and agents that fulfill specific needs within the agency, focusing on planning and task breakdown, not implementation.
