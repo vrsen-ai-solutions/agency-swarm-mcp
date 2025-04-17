@@ -5,89 +5,139 @@ alwaysApply: true
 ---
 # AI Agent Planning Instructions for Agency Swarm Framework
 
-Agency Swarm allows creating collaborative agent swarms (Agencies). Your primary role during the planning phase is to architect the agency structure, tools, and agent roles based on user requirements.
+Agency Swarm is a framework built upon the **OpenAI Assistants API** designed for creating collaborative agent swarms (Agencies). Your primary role during the **planning phase** is to architect the agency structure, define agent roles, specify tools, map communication flows, and outline shared context based on user requirements. **Focus on the *what* and *why*, not the *how* (code implementation).**
+
+**Core Planning Philosophy:**
+
+*   **Real-World Analogy:** Think about automation in terms of real-world entities like agencies and specialized agent roles. This makes planning more intuitive for both humans and the AI agents.
+*   **Full Prompt Control:** Agency Swarm gives you complete control over agent `instructions.md` and the shared `agency_manifesto.md` (passed via `shared_instructions` parameter), avoiding restrictive pre-defined prompts. Plan these carefully.
+*   **Start Simple:** Begin with the core functionality and minimal agents, then iteratively add complexity. Fine-tune them to ensure they function correctly before adding more. Introducing too many agents initially can make debugging and understanding interactions challenging.
+*   **Clarity is Key:** Ensure roles, responsibilities, and communication paths are unambiguous.
+*   **Tool-Centric:** Agents achieve goals through well-defined, reliable tools. Plan these meticulously. Tools should be **Task-Specific** (performs a single, well-defined task, not focused on an API), **Configurable** (agent can adapt based on previous circumstances), and **Reusable** (easily reusable across different agents).
+*   **Reliability Focus:** Built for production, planning should emphasize robust tool design and clear communication pathways. The framework handles low-level state management (e.g., `settings.json`, OpenAI Threads).
 
 **High-Level Planning Steps:**
 
-1.  **Understand Requirements:** Clarify the agency's mission, purpose, and operating environment.
-2.  **Define Agent Roles:** Determine the necessary agents and their specific responsibilities and capabilities within the agency.
-3.  **Identify Tools:** Specify the tools each agent will need. Think about the specific APIs or packages required for these tools.
-4.  **Map Communication Flows:** Define how agents will communicate and collaborate.
-5.  **Outline Shared Context:** Consider what instructions or information should be shared across all agents (Agency Manifesto).
+1.  **Understand Mission & Requirements:** Clarify the agency's overall purpose, specific goals, constraints, and operating environment.
+2.  **Define Agent Roles:** Determine the necessary agents, their unique responsibilities, expertise, and decision-making capabilities. Assign clear names (e.g., `ResearchAnalyst`, `CodeGenerator`). Define key agent parameters like `name`, `description`, `instructions` (path to file), `model`, `tools` (list of tool classes, including built-in `CodeInterpreter` and `FileSearch`), `tool_resources` (required for built-in tools), `tools_folder` (path to custom tools), `files_folder` (path to agent-specific files), `schemas_folder` (path to OpenAPI schemas). Agents are essentially wrappers for OpenAI Assistants.
+3.  **Design Agent Tools:** Specify the tools each agent needs to perform its role. Focus on *what* the tool does (its task), its inputs, outputs, and potential APIs/packages. Tools are essentially code. Consider if tools will be:
+    *   **Built-in Tools:** Inherited from OpenAI Assistants API:
+        *   `CodeInterpreter`: Executes Python code in a remote Jupyter Notebook. Useful for data analysis, calculations, handling structured files. Requires adding `CodeInterpreter` to the agent's `tools` list.
+        *   `FileSearch`: Searches through documents uploaded to the agent's knowledge base (via `files_folder` or `tool_resources`). Requires adding `FileSearch` to the `tools` list and potentially configuring `vector_store_ids` in `tool_resources`.
+    *   **Custom Tools:** Build from scratch inheriting from `BaseTool`. Recommended for most cases, especially when wrapping external APIs, to allow for custom validation, error handling, and data processing.
+    *   **OpenAPI Schemas:** Convert existing OpenAPI specs into tools using the agent's `schemas_folder` parameter or `ToolFactory.from_openapi_schema`. Useful for quick starts, but custom wrappers are often better for production.
+4.  **Map Communication Flows:** Define the **directional** communication initiation rights between agents using the `agency_chart`. Communication flows are established from left to right. Agency Swarm uses a special `SendMessage` tool to allow agents to communicate.
+5.  **Outline Shared Context:** Plan the content for the `agency_manifesto.md` (linked via the `shared_instructions` parameter) – global guidelines, mission reminders, etc. Plan any `shared_files` (path to folder(s) accessible by all agents) needed by the agency.
+6.  **Conceptualize Folder Structure:** Visualize the project layout, including folders for each agent, tools, schemas, and files.
 
 ---
 
-## Step 1: Detailed Planning Information
+## Step 1: Gather Detailed Requirements
 
-Before proceeding with implementation, ensure the plan clearly defines:
+Before finalizing the plan, ensure you have clear answers to:
 
--   The mission and purpose of the agency.
--   Description of the operating environment.
--   The roles and capabilities of each agent.
--   The tools each agent will use (including potential APIs/packages).
--   Communication flows between agents (who can talk to whom).
+*   **Mission:** What is the primary objective of the agency?
+*   **Goals:** What specific, measurable outcomes should the agency achieve?
+*   **Environment:** Where will the agency operate? What external systems or data sources will it interact with?
+*   **Constraints:** Are there budget limits, performance requirements, specific technologies to use/avoid, or ethical guidelines?
+*   **Key Roles:** What specialized functions are needed (e.g., data analysis, external communication, code generation, user interaction)?
+*   **Core Tasks:** What are the main activities the agency needs to perform?
 
-*If any information is missing, request clarification before finalizing the plan.*
+*If crucial information is missing, actively seek clarification before proceeding.*
 
 ---
 
 ## Step 2: Conceptual Folder Structure
 
-Understanding the typical structure helps in planning where components belong:
+Understanding the typical structure helps in planning where components belong. The `agency-swarm create-agent-template` CLI command can help scaffold this structure. It's recommended to define each agent in its own file, inheriting from the `Agent` class.
 
 ```
 AgencyName/
 ├── AgentName/            # Folder for each specific agent
-│   ├── AgentName.py      # Contains the Agent class definition
-│   ├── instructions.md   # Agent-specific instructions/prompt
-│   ├── files/            # Optional: For files needed by the agent
-│   ├── schemas/          # Optional: For OpenAPI schemas defining tools
-│   └── tools/            # Contains Python files for the agent's tools
+│   ├── AgentName.py      # Contains the Agent class definition, inheriting from agency_swarm.Agent
+│   ├── instructions.md   # Agent-specific instructions/prompt (linked via `instructions` param)
+│   ├── files/            # Optional: Agent-specific files (linked via `files_folder` param)
+│   ├── schemas/          # Optional: OpenAPI schemas (linked via `schemas_folder` param)
+│   └── tools/            # Contains Python files for the agent's custom tools (linked via `tools_folder` param)
 │       └── __init__.py   # Makes 'tools' a package
+│       └── ExampleTool.py   # Example custom tool file inheriting from BaseTool
 ├── AnotherAgent/         # ... (similar structure for other agents)
-├── agency.py             # Defines the Agency, imports agents, sets communication flows
-├── agency_manifesto.md   # Shared instructions/guidelines for all agents
+├── agency.py             # Defines the Agency, imports agents, sets communication flows (`agency_chart`)
+├── agency_manifesto.md   # Shared instructions/guidelines (linked via `shared_instructions` param)
+├── shared_files/         # Optional: Folder for shared files across the agency (linked via `shared_files` param)
 └── requirements.txt      # Project dependencies
 ```
 
--   Each agent has its own folder.
--   Tools are placed within the respective agent's `tools` folder.
+-   Each agent typically resides in its own folder.
+-   Custom tools are placed within the respective agent's `tools` folder. OpenAPI schemas go in `schemas`. Agent-specific files go in `files`.
 -   Agent-specific instructions go into `instructions.md`.
--   The overall agency structure and communication are defined in `agency.py`.
+-   The overall agency structure, communication (`agency_chart`), and shared context (`shared_instructions`, `shared_files`) are defined in `agency.py`.
 
 ---
 
-## Step 3: Planning Agent Tools
+## Step 3: Design Agent Tools
 
--   **Purpose:** Tools are Python classes defining specific actions an agent can perform.
--   **Key Element:** The **docstring** of the Tool class is crucial. It explains the tool's purpose and functionality, guiding the agent on when and how to use it.
--   **Inputs:** Plan the variable inputs (fields) the tool needs for each use case. Constant values can often be defined elsewhere.
--   **Functionality:** Outline the core logic the `run` method should perform.
+Tools are the functional units agents use to act. Plan them meticulously:
 
----
-
-## Step 4: Planning Agent Roles & Instructions
-
--   **Agent Class:** Defines the agent's core identity (`name`, `description`). It links to its instructions and tools.
--   **Instructions (`instructions.md`):** This is the core prompt defining the agent's behavior. Plan the following sections:
-    -   **Agent Role:** Clear description of the agent's responsibilities.
-    -   **Goals:** Specific objectives aligned with the agency's mission.
-    -   **Process Workflow:** Step-by-step guide on task execution, tool usage, and collaboration with other agents.
-
----
-
-## Step 5: Planning the Agency & Communication
-
--   **`agency.py`:** This file orchestrates the agency.
--   **Agent Instances:** Plan which defined agents will be part of the agency.
--   **Communication Chart (`agency_chart`):** This defines communication pathways.
-    -   `[agent_A]` (top-level): Agent A can communicate with the user.
-    -   `[agent_A, agent_B]`: Agent A can initiate communication *with* Agent B. Agent B can respond but cannot initiate communication *to* Agent A.
--   **Shared Instructions (`agency_manifesto.md`):** Plan the content for shared context provided to all agents. This typically includes:
-    -   Agency Description
-    -   Mission Statement
-    -   Operating Environment Details
+*   **Purpose:** Define the specific, single task the tool performs (e.g., "Search the web," "Write Python code," "Query database"). Tools should be **Task-Specific**, not API-specific.
+*   **Tool Class Name:** A descriptive Python class name (e.g., `WebSearchTool`, `FileWriterTool`) inheriting from `BaseTool` for custom tools.
+*   **Type Safety and Validation:** Tools inherit from `BaseTool` and use Pydantic `Field` for inputs. This enables automatic type validation. Plan the `name`, `type`, and a clear `description` for *each* field. The description guides the agent on what information to provide.
+    ```python
+    # Example Planning Snippet for a Tool Input
+    # Tool: FileWriterTool (inherits from BaseTool)
+    # Field: file_path: str = Field(..., description="The relative path where the file should be saved.")
+    # Field: content: str = Field(..., description="The text content to write into the file.")
+    ```
+*   **Docstring (Crucial):** Plan the **main tool docstring**. This is *essential* for the agent to understand *when* and *why* to use the tool. It must clearly explain the tool's purpose, functionality, and ideal use case.
+*   **Functionality (`run` method):** Outline the core logic the `run` method should perform using the defined fields.
+*   **Tool Types:**
+    *   **Custom Tools:** Build from scratch inheriting from `BaseTool`. Recommended for most cases, especially when wrapping external APIs, to allow for custom validation, error handling, and data processing.
+    *   **OpenAPI Schemas:** Convert existing OpenAPI specs into tools using the agent's `schemas_folder` parameter or `ToolFactory.from_openapi_schema`. Useful for quick starts, but custom wrappers are often better for production.
+*   **Error Handling (Conceptual):** Briefly consider how the tool should behave on failure (e.g., "Return error message," "Retry N times").
 
 ---
 
-*Focus on defining these planning elements clearly. Implementation details (specific code, testing, commands) are handled in subsequent development phases.*
+## Step 4: Plan Agent Roles & Instructions
+
+*   **Agent Class (`AgentName.py`):** Defines the agent's core identity (`name`, `description`). It links to its instructions (`instructions.md`), tools (via `tools`, `tools_folder`, `schemas_folder`), and files (`files_folder`). Agents inherit from `agency_swarm.Agent`.
+*   **Instructions (`instructions.md`):** This is the core system prompt defining *how* an agent behaves. Plan its content carefully:
+    *   **Persona & Role:** Reiterate the agent's role, expertise, and personality (if any). Refer back to the `description` parameter.
+    *   **Goals:** List the specific objectives this agent strives to achieve, aligning with the agency mission.
+    *   **Process Workflow:** Outline the typical steps the agent should follow:
+        *   How to approach tasks.
+        *   When and how to use specific tools (referencing tool docstrings).
+        *   When and how to communicate with other agents (referencing the `agency_chart` and agent descriptions). The built-in `SendMessage` tool is used for this.
+        *   How to handle common scenarios or errors.
+    *   **Constraints & Guidelines:** Specify any rules, limitations, or quality standards the agent must adhere to.
+
+---
+
+## Step 5: Plan the Agency Structure & Communication (`agency.py`)
+
+This file orchestrates the entire swarm:
+
+*   **Agent Instances:** List the specific agent objects (instantiated from their classes) that will be part of this agency.
+*   **Shared Instructions (`shared_instructions` -> `agency_manifesto.md`):** Finalize the content for the shared context file, linked via the `shared_instructions` parameter in the `Agency` constructor. Typically includes:
+    *   Overall Agency Mission & Goals
+    *   Core Values or Principles
+    *   Operating Environment Overview
+    *   Glossary of Terms (if needed)
+*   **Shared Files (`shared_files`):** Specify the path to any folders containing files that should be accessible to all agents in the agency. These files are added to each agent's `files_folder`.
+*   **Communication Chart (`agency_chart`):** Define the **directional communication initiation rights**. Communication flows are **uniform** and **established from left to right**. Agents decide *when* to communicate based on their instructions, but the chart dictates *who is allowed to start* a conversation with whom.
+    *   The chart is defined as a list in the `Agency` constructor.
+    *   Agents listed directly in the top-level list (e.g., `[ceo, dev, ...]`) can communicate directly with the user.
+    *   Nested lists define initiation permissions, read from left to right (e.g., `[ceo, dev]` means `ceo` can initiate contact with `dev`. `dev` can respond in the same thread but cannot start a new thread *to* `ceo`).
+    *   Plan the chart carefully to enable necessary collaborations while preventing unnecessary chatter. Define *who needs the ability to initiate contact with whom*. The framework uses a built-in `SendMessage` tool to facilitate this.
+
+---
+
+## Step 6: Advanced Planning Considerations (Optional)
+
+While the above steps cover core planning, consider these advanced features if needed:
+
+*   **Asynchronous Execution:** For potentially long-running tasks, you can plan for asynchronous operations. Agents can run in separate threads using specific communication tools, or individual tools can be configured for async execution. See [Asynchronous Execution](mdc:https:/agency-swarm.ai/additional-features/asynchronous-execution) documentation for details.
+*   **Custom Communication Flows:** The standard `SendMessage` tool handles most cases. However, Agency Swarm allows for full customization. You can use pre-made alternatives (like `SendMessageQuick` for speed or `SendMessageAsyncThreading` for async agents) or build entirely unique communication logic by extending `SendMessageBase`. Refer to the [Custom Communication Flows Overview](mdc:https:/agency-swarm.ai/additional-features/custom-communication-flows/overview) and [Common Use Cases](mdc:https:/agency-swarm.ai/additional-features/custom-communication-flows/common-use-cases) for more information.
+
+---
+
+*Focus on defining these planning elements clearly and logically. Implementation details (writing the actual Python code, specific API calls within tools, detailed error handling logic, testing, CLI commands) are handled in subsequent development phases based on this plan.*
