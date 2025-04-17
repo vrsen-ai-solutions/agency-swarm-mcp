@@ -1,12 +1,12 @@
 {
-  "name": "agency-swarm-mcp",
+  "name": "agencyswarm-mcp",
   "version": "0.1.0",
   "description": "A task management system for AI-driven development, forked from claude-task-master, with seamless Cursor integration.",
   "main": "index.js",
   "type": "module",
   "bin": {
     "task-master": "bin/task-master.js",
-    "agency-swarm-mcp": "mcp-server/server.js"
+    "agencyswarm-mcp": "mcp-server/server.js"
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/.bin/jest",

@@ -891,9 +891,9 @@ function setupMCPConfiguration(targetDir, projectName) {
 
 	// New MCP config to be added - references the installed package
 	const newMCPServer = {
-		'agency-swarm-mcp': {
+		'agencyswarm-mcp': {
 			command: 'npx',
-			args: ['-y', 'agency-swarm-mcp'],
+			args: ['-y', 'agencyswarm-mcp'],
 			env: {
 				ANTHROPIC_API_KEY: 'YOUR_ANTHROPIC_API_KEY',
 				PERPLEXITY_API_KEY: 'YOUR_PERPLEXITY_API_KEY',
@@ -911,7 +911,7 @@ function setupMCPConfiguration(targetDir, projectName) {
 	if (fs.existsSync(mcpJsonPath)) {
 		log(
 			'info',
-			'MCP configuration file already exists, checking for existing agency-swarm-mcp...'
+			'MCP configuration file already exists, checking for existing agencyswarm-mcp...'
 		);
 		try {
 			// Read existing config
@@ -922,34 +922,34 @@ function setupMCPConfiguration(targetDir, projectName) {
 				mcpConfig.mcpServers = {};
 			}
 
-			// Check if any existing server configuration already has agency-swarm-mcp in its args
+			// Check if any existing server configuration already has agencyswarm-mcp in its args
 			const hasMCPString = Object.values(mcpConfig.mcpServers).some(
 				(server) =>
 					server.args &&
 					server.args.some(
 						(arg) =>
-							typeof arg === 'string' && arg.includes('agency-swarm-mcp')
+							typeof arg === 'string' && arg.includes('agencyswarm-mcp')
 					)
 			);
 
 			if (hasMCPString) {
 				log(
 					'info',
-					'Found existing agency-swarm-mcp configuration in mcp.json, leaving untouched'
+					'Found existing agencyswarm-mcp configuration in mcp.json, leaving untouched'
 				);
 				return; // Exit early, don't modify the existing configuration
 			}
 
-			// Add the agency-swarm-mcp server if it doesn't exist
-			if (!mcpConfig.mcpServers['agency-swarm-mcp']) {
-				mcpConfig.mcpServers['agency-swarm-mcp'] =
-					newMCPServer['agency-swarm-mcp'];
+			// Add the agencyswarm-mcp server if it doesn't exist
+			if (!mcpConfig.mcpServers['agencyswarm-mcp']) {
+				mcpConfig.mcpServers['agencyswarm-mcp'] =
+					newMCPServer['agencyswarm-mcp'];
 				log(
 					'info',
-					'Added agency-swarm-mcp server to existing MCP configuration'
+					'Added agencyswarm-mcp server to existing MCP configuration'
 				);
 			} else {
-				log('info', 'agency-swarm-mcp server already configured in mcp.json');
+				log('info', 'agencyswarm-mcp server already configured in mcp.json');
 			}
 
 			// Write the updated configuration
@@ -986,7 +986,7 @@ function setupMCPConfiguration(targetDir, projectName) {
 	}
 
 	// Add note to console about MCP integration
-	log('info', 'MCP server will use the installed agency-swarm-mcp package');
+	log('info', 'MCP server will use the installed agencyswarm-mcp package');
 }
 
 // Ensure necessary functions are exported

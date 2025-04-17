@@ -27,7 +27,7 @@ MCP (Model Control Protocol) provides the easiest way to get started with Agency
 1. **Install the package**
 
 ```bash
-npm i -g agency-swarm-mcp
+npm i -g agencyswarm-mcp
 ```
 
 2. **Add the MCP config to your editor** (Cursor recommended, but it works with other text editors):
@@ -37,7 +37,7 @@ npm i -g agency-swarm-mcp
 	"mcpServers": {
 		"agency-swarm": {
 			"command": "npx",
-			"args": ["-y", "agency-swarm-mcp"],
+			"args": ["-y", "agencyswarm-mcp"],
 			"env": {
 				"ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
 				"PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
@@ -58,7 +58,7 @@ npm i -g agency-swarm-mcp
 3. **Prompt the AI** to initialize Agency Swarm MCP:
 
 ```
-Can you please initialize agency-swarm-mcp into my project?
+Can you please initialize Agency Swarm MCP into my project?
 ```
 
 4. **Use common commands** directly through your AI assistant:
@@ -76,10 +76,10 @@ Can you help me expand task 4?
 
 ```bash
 # Install globally
-npm install -g agency-swarm-mcp
+npm install -g agencyswarm-mcp
 
 # OR install locally within your project
-npm install agency-swarm-mcp
+npm install agencyswarm-mcp
 ```
 
 #### Initialize a new project
@@ -92,7 +92,7 @@ task-master init
 npx task-master-init
 ```
 
-> **Note:** The CLI command `task-master` is still available for compatibility, but the main entrypoint for MCP is `agency-swarm-mcp`.
+> **Note:** The CLI command `task-master` is still available for compatibility, but the main entrypoint for MCP is `agencyswarm-mcp`.
 
 This will prompt you for project details and set up a new project with the necessary files and structure.
 

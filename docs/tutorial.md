@@ -13,7 +13,7 @@ MCP (Model Control Protocol) provides the easiest way to get started with Task M
 1. **Install the package**
 
 ```bash
-npm i -g agency-swarm-mcp
+npm i -g agencyswarm-mcp
 ```
 
 2. **Add the MCP config to your editor** (Cursor recommended, but it works with other text editors):
@@ -69,10 +69,10 @@ If you prefer to use the command line interface directly:
 
 ```bash
 # Install globally
-npm install -g agency-swarm-mcp
+npm install -g agencyswarm-mcp
 
 # OR install locally within your project
-npm install agency-swarm-mcp
+npm install agencyswarm-mcp
 ```
 
 Initialize a new project:

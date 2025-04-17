@@ -1,6 +1,6 @@
 # Releasing New Versions (for Maintainers)
 
-This document outlines the process for releasing new versions of the `agency-swarm-mcp` package using Changesets.
+This document outlines the process for releasing new versions of the `agencyswarm-mcp` package using Changesets.
 
 ## Pre-Release Workflow (During Development)
 

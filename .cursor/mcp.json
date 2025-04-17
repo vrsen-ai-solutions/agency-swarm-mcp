@@ -1,6 +1,6 @@
 {
     "mcpServers": {
-        "agency-swarm-mcp-test": {
+        "agencyswarm-mcp-test": {
             "command": "node",
             "args": [
                 "./mcp-server/server.js"
@@ -16,11 +16,11 @@
                 "DEFAULT_PRIORITY": "medium"
             }
         },
-        "agency-swarm-mcp": {
+        "agencyswarm-mcp": {
             "command": "npx",
             "args": [
                 "-y",
-                "agency-swarm-mcp"
+                "agencyswarm-mcp"
             ],
             "env": {
                 "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY",
