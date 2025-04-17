@@ -10,6 +10,10 @@ alwaysApply: true
 
 This guide outlines the typical process for using Task Master to manage software development projects.
 
+## Critical Safety Protocol: Confirmation Required
+
+**Crucially, before executing any high-stakes or potentially irreversible actions (such as publishing packages, running destructive database commands, performing mass deletions, or altering critical infrastructure), you MUST obtain explicit confirmation from the user.** Always propose the action clearly and wait for approval before proceeding.
+
 ## Primary Interaction: MCP Server vs. CLI
 
 Task Master offers two primary ways to interact:
