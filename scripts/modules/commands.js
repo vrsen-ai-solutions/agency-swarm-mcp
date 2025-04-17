@@ -1600,7 +1600,7 @@ function setupCLI() {
 }
 
 /**
- * Check for newer version of task-master-ai
+ * Check for newer version of agency-swarm-mcp
  * @returns {Promise<{currentVersion: string, latestVersion: string, needsUpdate: boolean}>}
  */
 async function checkForUpdate() {
@@ -1611,7 +1611,7 @@ async function checkForUpdate() {
 		const packageJsonPath = path.join(
 			process.cwd(),
 			'node_modules',
-			'task-master-ai',
+			'agency-swarm-mcp',
 			'package.json'
 		);
 		if (fs.existsSync(packageJsonPath)) {
@@ -1627,7 +1627,7 @@ async function checkForUpdate() {
 		// Get the latest version from npm registry
 		const options = {
 			hostname: 'registry.npmjs.org',
-			path: '/task-master-ai',
+			path: '/agency-swarm-mcp',
 			method: 'GET',
 			headers: {
 				Accept: 'application/vnd.npm.install-v1+json' // Lightweight response
@@ -1719,7 +1719,7 @@ function compareVersions(v1, v2) {
 function displayUpgradeNotification(currentVersion, latestVersion) {
 	const message = boxen(
 		`${chalk.blue.bold('Update Available!')} ${chalk.dim(currentVersion)} → ${chalk.green(latestVersion)}\n\n` +
-			`Run ${chalk.cyan('npm i task-master-ai@latest -g')} to update to the latest version with new features and bug fixes.`,
+			`Run ${chalk.cyan('npm i agency-swarm-mcp@latest -g')} to update to the latest version with new features and bug fixes.`,
 		{
 			padding: 1,
 			margin: { top: 1, bottom: 1 },

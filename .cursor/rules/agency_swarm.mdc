@@ -3,32 +3,91 @@ description: Planning and task breakdown protocol for all agency-swarm framework
 globs: '**/*'
 alwaysApply: true
 ---
-# AI Agent Creator Instructions for Agency Swarm Framework
+# AI Agent Planning Instructions for Agency Swarm Framework
 
-> Official documentation: https://agency-swarm.ai  
-> The AI agent should use web search to find the latest official docs and best practices.
+Agency Swarm allows creating collaborative agent swarms (Agencies). Your primary role during the planning phase is to architect the agency structure, tools, and agent roles based on user requirements.
 
-Agency Swarm is a framework for creating a collaborative swarm of agents (Agencies), each with distinct roles and capabilities. Your primary role is to architect tools and agents that fulfill specific needs within the agency, focusing on planning and task breakdown, not implementation.
+**High-Level Planning Steps:**
 
-## Step-by-Step Development Process
+1.  **Understand Requirements:** Clarify the agency's mission, purpose, and operating environment.
+2.  **Define Agent Roles:** Determine the necessary agents and their specific responsibilities and capabilities within the agency.
+3.  **Identify Tools:** Specify the tools each agent will need. Think about the specific APIs or packages required for these tools.
+4.  **Map Communication Flows:** Define how agents will communicate and collaborate.
+5.  **Outline Shared Context:** Consider what instructions or information should be shared across all agents (Agency Manifesto).
 
-1. **Planning**: Plan the Agency structure step-by-step. Clarify the mission, roles, tools, and communication flows. Ask the user for clarification if anything is unclear.
-2. **Break Down Work**: For each requirement, break down the work into clear, actionable tasks. Always include relevant context in every task.
-3. **Research**: For each tool or capability, browse the web to find the best APIs, packages, and documentation. Document your findings and rationale for each choice.
-4. **Architecture**: Define the folder structure, agent roles, and communication flows. Focus on high-level design, not code.
-5. **Testing**: At the end of the process, ensure each tool and the agency as a whole are tested according to the plan.
-6. **Iteration**: Repeat the above steps as needed, refining the plan and tasks until the agency performs as required.
+---
 
-## Best Practices
-- Do not output code snippets or implementation details in chat or in this file.
-- Focus on planning, architecture, and clear task breakdowns.
-- Always include relevant context and rationale for each decision.
-- Use web search to find and compare the best APIs, packages, and documentation for each tool or integration.
-- Document the reasoning for each tool and design choice.
-- Ask for clarification if requirements are unclear or incomplete.
-- Ensure the process is repeatable and adaptable for future agencies.
+## Step 1: Detailed Planning Information
 
-## Notes
-- This file is intended to guide agents in planning and structuring agencies, not in writing code.
-- All implementation should be deferred until after planning, research, and task breakdown are complete.
-- Testing and validation are required at the end of each development cycle.
+Before proceeding with implementation, ensure the plan clearly defines:
+
+-   The mission and purpose of the agency.
+-   Description of the operating environment.
+-   The roles and capabilities of each agent.
+-   The tools each agent will use (including potential APIs/packages).
+-   Communication flows between agents (who can talk to whom).
+
+*If any information is missing, request clarification before finalizing the plan.*
+
+---
+
+## Step 2: Conceptual Folder Structure
+
+Understanding the typical structure helps in planning where components belong:
+
+```
+AgencyName/
+├── AgentName/            # Folder for each specific agent
+│   ├── AgentName.py      # Contains the Agent class definition
+│   ├── instructions.md   # Agent-specific instructions/prompt
+│   ├── files/            # Optional: For files needed by the agent
+│   ├── schemas/          # Optional: For OpenAPI schemas defining tools
+│   └── tools/            # Contains Python files for the agent's tools
+│       └── __init__.py   # Makes 'tools' a package
+├── AnotherAgent/         # ... (similar structure for other agents)
+├── agency.py             # Defines the Agency, imports agents, sets communication flows
+├── agency_manifesto.md   # Shared instructions/guidelines for all agents
+└── requirements.txt      # Project dependencies
+```
+
+-   Each agent has its own folder.
+-   Tools are placed within the respective agent's `tools` folder.
+-   Agent-specific instructions go into `instructions.md`.
+-   The overall agency structure and communication are defined in `agency.py`.
+
+---
+
+## Step 3: Planning Agent Tools
+
+-   **Purpose:** Tools are Python classes defining specific actions an agent can perform.
+-   **Key Element:** The **docstring** of the Tool class is crucial. It explains the tool's purpose and functionality, guiding the agent on when and how to use it.
+-   **Inputs:** Plan the variable inputs (fields) the tool needs for each use case. Constant values can often be defined elsewhere.
+-   **Functionality:** Outline the core logic the `run` method should perform.
+
+---
+
+## Step 4: Planning Agent Roles & Instructions
+
+-   **Agent Class:** Defines the agent's core identity (`name`, `description`). It links to its instructions and tools.
+-   **Instructions (`instructions.md`):** This is the core prompt defining the agent's behavior. Plan the following sections:
+    -   **Agent Role:** Clear description of the agent's responsibilities.
+    -   **Goals:** Specific objectives aligned with the agency's mission.
+    -   **Process Workflow:** Step-by-step guide on task execution, tool usage, and collaboration with other agents.
+
+---
+
+## Step 5: Planning the Agency & Communication
+
+-   **`agency.py`:** This file orchestrates the agency.
+-   **Agent Instances:** Plan which defined agents will be part of the agency.
+-   **Communication Chart (`agency_chart`):** This defines communication pathways.
+    -   `[agent_A]` (top-level): Agent A can communicate with the user.
+    -   `[agent_A, agent_B]`: Agent A can initiate communication *with* Agent B. Agent B can respond but cannot initiate communication *to* Agent A.
+-   **Shared Instructions (`agency_manifesto.md`):** Plan the content for shared context provided to all agents. This typically includes:
+    -   Agency Description
+    -   Mission Statement
+    -   Operating Environment Details
+
+---
+
+*Focus on defining these planning elements clearly. Implementation details (specific code, testing, commands) are handled in subsequent development phases.*

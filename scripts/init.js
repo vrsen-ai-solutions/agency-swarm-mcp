@@ -891,9 +891,9 @@ function setupMCPConfiguration(targetDir, projectName) {
 
 	// New MCP config to be added - references the installed package
 	const newMCPServer = {
-		'task-master-ai': {
+		'agency-swarm-mcp': {
 			command: 'npx',
-			args: ['-y', 'task-master-mcp'],
+			args: ['-y', 'agency-swarm-mcp'],
 			env: {
 				ANTHROPIC_API_KEY: 'YOUR_ANTHROPIC_API_KEY',
 				PERPLEXITY_API_KEY: 'YOUR_PERPLEXITY_API_KEY',
@@ -911,7 +911,7 @@ function setupMCPConfiguration(targetDir, projectName) {
 	if (fs.existsSync(mcpJsonPath)) {
 		log(
 			'info',
-			'MCP configuration file already exists, checking for existing task-master-mcp...'
+			'MCP configuration file already exists, checking for existing agency-swarm-mcp...'
 		);
 		try {
 			// Read existing config
@@ -922,32 +922,34 @@ function setupMCPConfiguration(targetDir, projectName) {
 				mcpConfig.mcpServers = {};
 			}
 
-			// Check if any existing server configuration already has task-master-mcp in its args
+			// Check if any existing server configuration already has agency-swarm-mcp in its args
 			const hasMCPString = Object.values(mcpConfig.mcpServers).some(
 				(server) =>
 					server.args &&
 					server.args.some(
-						(arg) => typeof arg === 'string' && arg.includes('task-master-mcp')
+						(arg) =>
+							typeof arg === 'string' && arg.includes('agency-swarm-mcp')
 					)
 			);
 
 			if (hasMCPString) {
 				log(
 					'info',
-					'Found existing task-master-mcp configuration in mcp.json, leaving untouched'
+					'Found existing agency-swarm-mcp configuration in mcp.json, leaving untouched'
 				);
 				return; // Exit early, don't modify the existing configuration
 			}
 
-			// Add the task-master-ai server if it doesn't exist
-			if (!mcpConfig.mcpServers['task-master-ai']) {
-				mcpConfig.mcpServers['task-master-ai'] = newMCPServer['task-master-ai'];
+			// Add the agency-swarm-mcp server if it doesn't exist
+			if (!mcpConfig.mcpServers['agency-swarm-mcp']) {
+				mcpConfig.mcpServers['agency-swarm-mcp'] =
+					newMCPServer['agency-swarm-mcp'];
 				log(
 					'info',
-					'Added task-master-ai server to existing MCP configuration'
+					'Added agency-swarm-mcp server to existing MCP configuration'
 				);
 			} else {
-				log('info', 'task-master-ai server already configured in mcp.json');
+				log('info', 'agency-swarm-mcp server already configured in mcp.json');
 			}
 
 			// Write the updated configuration
@@ -984,7 +986,7 @@ function setupMCPConfiguration(targetDir, projectName) {
 	}
 
 	// Add note to console about MCP integration
-	log('info', 'MCP server will use the installed task-master-ai package');
+	log('info', 'MCP server will use the installed agency-swarm-mcp package');
 }
 
 // Ensure necessary functions are exported

@@ -13,7 +13,7 @@ MCP (Model Control Protocol) provides the easiest way to get started with Task M
 1. **Install the package**
 
 ```bash
-npm i -g task-master-ai
+npm i -g agency-swarm-mcp
 ```
 
 2. **Add the MCP config to your editor** (Cursor recommended, but it works with other text editors):
@@ -69,10 +69,10 @@ If you prefer to use the command line interface directly:
 
 ```bash
 # Install globally
-npm install -g task-master-ai
+npm install -g agency-swarm-mcp
 
 # OR install locally within your project
-npm install task-master-ai
+npm install agency-swarm-mcp
 ```
 
 Initialize a new project:
