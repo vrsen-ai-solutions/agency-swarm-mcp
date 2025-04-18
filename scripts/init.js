@@ -704,6 +704,12 @@ function createProjectStructure(
 	// Copy .gitignore
 	copyTemplateFile('gitignore', path.join(targetDir, '.gitignore'));
 
+	// Copy agency_swarm.mdc
+	copyTemplateFile(
+		'agency_swarm.mdc',
+		path.join(targetDir, '.cursor', 'rules', 'agency_swarm.mdc')
+	);
+
 	// Copy dev_workflow.mdc
 	copyTemplateFile(
 		'dev_workflow.mdc',
@@ -729,16 +735,16 @@ function createProjectStructure(
 	);
 
 	// Copy .windsurfrules
-	copyTemplateFile('windsurfrules', path.join(targetDir, '.windsurfrules'));
+	// copyTemplateFile('windsurfrules', path.join(targetDir, '.windsurfrules'));
 
 	// Copy scripts/dev.js
 	copyTemplateFile('dev.js', path.join(targetDir, 'scripts', 'dev.js'));
 
 	// Copy scripts/README.md
-	copyTemplateFile(
-		'scripts_README.md',
-		path.join(targetDir, 'scripts', 'README.md')
-	);
+	// copyTemplateFile(
+	// 	'scripts_README.md',
+	// 	path.join(targetDir, 'scripts', 'README.md')
+	// );
 
 	// Copy example_prd.txt
 	copyTemplateFile(
@@ -747,11 +753,11 @@ function createProjectStructure(
 	);
 
 	// Create main README.md
-	copyTemplateFile(
-		'README-task-master.md',
-		path.join(targetDir, 'README.md'),
-		replacements
-	);
+	// copyTemplateFile(
+	// 	'README-task-master.md',
+	// 	path.join(targetDir, 'README.md'),
+	// 	replacements
+	// );
 
 	// Initialize git repository if git is available
 	try {
