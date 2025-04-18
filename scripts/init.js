@@ -227,6 +227,15 @@ function copyTemplateFile(templateName, targetPath, replacements = {}) {
 		case 'windsurfrules':
 			sourcePath = path.join(__dirname, '..', 'assets', '.windsurfrules');
 			break;
+		case 'agency_swarm.mdc':
+			sourcePath = path.join(
+				__dirname,
+				'..',
+				'.cursor',
+				'rules',
+				'agency_swarm.mdc'
+			);
+			break;
 		default:
 			// For other files like env.example, gitignore, etc. that don't have direct equivalents
 			sourcePath = path.join(__dirname, '..', 'assets', templateName);

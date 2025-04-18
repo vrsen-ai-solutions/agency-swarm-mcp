@@ -134,11 +134,19 @@ For more detailed information, check out the documentation in the `docs` directo
 
 ## Publishing to npm
 
-To publish a new version to npm:
+To publish a new version to npm, simply run:
 
 ```bash
-npm publish --access public
+npm publish
 ```
+
+This command automatically triggers the `prepare-package.js` script via the `prepublishOnly` hook in `package.json`. The script will:
+- Automatically increment the **patch** version number in `package.json`.
+- Perform checks and ensure scripts are executable.
+
+After the script runs, `npm publish` will proceed to package and upload the new version to the registry.
+
+For generating `CHANGELOG.md` entries, refer to the process in [`RELEASING.md`](RELEASING.md).
 
 ## Keeping Your Fork Up-to-Date
 
