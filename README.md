@@ -1,6 +1,6 @@
 # Agency Swarm MCP [![GitHub stars](https://img.shields.io/github/stars/VRSEN/agency-swarm-mcp?style=social)](https://github.com/VRSEN/agency-swarm-mcp/stargazers)
 
-> Agency Swarm MCP is a minimally-different fork of Task Master, maintained by VRSEN. All workflow, rules, and documentation are specific to Agency Swarm MCP. For most users, follow the instructions below.
+> Agency Swarm MCP is a minimally-different fork of Task Master, maintained by VRSEN. For most users, follow the instructions below.
 
 [![CI](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/VRSEN/agency-swarm-mcp/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/agency-swarm-mcp.svg)](https://badge.fury.io/js/agency-swarm-mcp) ![Discord Follow](https://dcbadge.limes.pink/api/server/https://discord.gg/cw2xBaWfFM?style=flat) [![License: MIT with Commons Clause](https://img.shields.io/badge/license-MIT%20with%20Commons%20Clause-blue.svg)](LICENSE)
 
