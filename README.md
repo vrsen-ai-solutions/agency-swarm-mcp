@@ -24,13 +24,7 @@ A task management system for AI-driven development with Claude, designed to work
 
 MCP (Model Control Protocol) provides the easiest way to get started with Agency Swarm MCP directly in your editor.
 
-1. **Install the package**
-
-```bash
-npm i -g agencyswarm-mcp
-```
-
-2. **Add the MCP config to your editor** (Cursor recommended, but it works with other text editors):
+1. **Add the MCP config to your editor** (Cursor recommended, but it works with other text editors):
 
 ```json
 {
