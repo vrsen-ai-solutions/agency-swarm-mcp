@@ -747,7 +747,7 @@ function createProjectStructure(
 	// copyTemplateFile('windsurfrules', path.join(targetDir, '.windsurfrules'));
 
 	// Copy scripts/dev.js
-	copyTemplateFile('dev.js', path.join(targetDir, 'scripts', 'dev.js'));
+	// copyTemplateFile('dev.js', path.join(targetDir, 'scripts', 'dev.js'));
 
 	// Copy scripts/README.md
 	// copyTemplateFile(
