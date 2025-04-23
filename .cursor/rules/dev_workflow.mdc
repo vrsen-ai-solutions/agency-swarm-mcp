@@ -3,7 +3,6 @@ description: Guide for using Task Master to manage task-driven development workf
 globs: **/*
 alwaysApply: true
 ---
-
 # Task Master Development Workflow for Agency Swarm
 
 This guide outlines the process for using Task Master, guided by Agency Swarm principles. 
@@ -35,6 +34,13 @@ This process integrates Task Master capabilities with the specific needs of Agen
     *   Clarify the agency's overall purpose, specific goals, constraints, and operating environment.
     *   **Ask clarifying questions:** If crucial information (Mission, Goals, Constraints, Key Roles, Core Tasks) is missing, **actively seek clarification from the user** before proceeding with detailed planning.
     *   **PRD Generation:** If starting from scratch or user request, generate a Product Requirements Document (PRD). **Ensure the generated PRD follows the structure and format of `example_prd.txt`.**
+        *   **Crucially, the PRD MUST explicitly state:**
+            *   The project utilizes the **Agency Swarm framework**.
+            *   The primary programming language is **Python**.
+            *   Key Agency Swarm concepts involved (e.g., Agents, Tools, `agency.py`, `instructions.md`, communication flows).
+            *   Any specific libraries or APIs required for Tools.
+            *   Any other technical constraints or architectural decisions.
+        *   **Lack of this context will lead Task Master to hallucinate** when parsing the PRD. Provide comprehensive details.
     *   Use `init` or `parse_prd` tools/commands to initialize `tasks.json` based on the PRD or initial user request.
 
 2.  **Plan the Agency (High-Level Design):**
@@ -54,11 +60,12 @@ This process integrates Task Master capabilities with the specific needs of Agen
 
 4.  **Task Breakdown & Refinement:**
     *   Use `expand_task` (potentially with `--research` or `--prompt` flags) to break high-level goals into smaller, actionable implementation tasks based on the research and plan.
+        *   **When using `--prompt`, ensure it includes essential context** about the task's place within the Agency Swarm structure (e.g., "This task is for creating a Tool for the 'CodeGenerator' agent in a Python-based Agency Swarm project."). This helps the AI generate relevant subtasks.
     *   **Task Structure Requirements:**
-        * Tasks MUST follow the integration-first approach: Tool Dev -> Agent Dev -> Testing -> Agency Run
-        * Each agent typically requires 3-16 tools (based on complexity and responsibilities)
-        * Each tool task MUST include testing requirements
-        * Dependencies must enforce tool-first development
+        *   Tasks MUST follow the integration-first approach: Tool Dev -> Agent Dev -> Testing -> Agency Run
+        *   Each agent typically requires 3-16 tools (based on complexity and responsibilities)
+        *   Each tool task MUST include testing requirements
+        *   Dependencies must enforce tool-first development
     *   Use Task Master tools (`add_task`, `add_subtask`, `add_dependency`, etc.) to refine the task list and dependencies.
 
 5.  **Develop Tools (Implementation):**
