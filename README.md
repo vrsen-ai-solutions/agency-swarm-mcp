@@ -20,7 +20,7 @@ A task management system for AI-driven development with Claude, designed to work
 
 ## Quick Start
 
-#### Installation
+### Installation
 
 ```bash
 # Install globally
@@ -30,7 +30,7 @@ npm install -g agencyswarm-mcp
 npm install agencyswarm-mcp
 ```
 
-### Option 1 | MCP (Recommended):
+### Using MCP:
 
 MCP (Model Control Protocol) provides the easiest way to get started with Agency Swarm MCP directly in your editor.
 
@@ -74,28 +74,9 @@ Can you help me implement task 3?
 Can you help me expand task 4?
 ```
 
-### Option 2: Using Command Line
-
-#### Initialize a new project
+### Useful Command-Line Commands
 
 ```bash
-# If installed globally
-task-master init
-
-# If installed locally
-npx task-master-init
-```
-
-> **Note:** The CLI command `task-master` is still available for compatibility, but the main entrypoint for MCP is `agencyswarm-mcp`.
-
-This will prompt you for project details and set up a new project with the necessary files and structure.
-
-#### Common Commands
-
-```bash
-# Initialize a new project
-task-master init
-
 # Parse a PRD and generate tasks
 task-master parse-prd your-prd.txt
 
@@ -175,4 +156,4 @@ See the [LICENSE](LICENSE) file for the complete license text and [licensing det
 
 ## Upstream: Task Master
 
-This project is based on [Task Master](https://github.com/eyaltoledano/claude-task-master). Most users do not need to reference upstream docs unless contributing to core or troubleshooting advanced issues. All rules in `.cursor/rules` are inherited from Task Master unless otherwise noted.
+This project is based on [Task Master](https://github.com/eyaltoledano/claude-task-master). Most users do not need to reference upstream docs unless contributing to core or troubleshooting advanced issues. 

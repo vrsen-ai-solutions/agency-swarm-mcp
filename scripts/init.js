@@ -704,11 +704,11 @@ function createProjectStructure(
 	};
 
 	// Copy .env.example
-	copyTemplateFile(
-		'env.example',
-		path.join(targetDir, '.env.example'),
-		replacements
-	);
+	// copyTemplateFile(
+	// 	'env.example',
+	// 	path.join(targetDir, '.env.example'),
+	// 	replacements
+	// );
 
 	// Copy .gitignore
 	copyTemplateFile('gitignore', path.join(targetDir, '.gitignore'));
