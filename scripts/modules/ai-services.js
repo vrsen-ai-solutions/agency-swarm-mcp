@@ -203,6 +203,16 @@ Guidelines for creating tasks:
 10. Fill in gaps left by the PRD while preserving all explicit requirements.
 11. Provide the most direct path to implementation, avoiding over-engineering.
 
+# ---- Agency Swarm Additions ----
+12. ORGANIZE the resulting tasks according to the Agency Swarm integration-first workflow:
+   • Phase 1 - Tool Development and Testing (each tool task MUST include a test block in the \`if __name__ == "__main__":\` section) for every agent.
+   • Phase 2 - Agent Development and Testing.
+   • Phase 3 – Agency orchestration run (\`agency.py\`) and end-to-end testing.
+
+   Make sure dependencies enforce this order (later phases depend on earlier ones).
+13. Any task that represents building a tool MUST explicitly state a testing requirement matching the pattern used in Agency Swarm (\`if __name__ == "__main__"\` block).
+# ---- End Agency Swarm Additions ----
+
 The final output should be valid JSON with this structure:
 
 {
