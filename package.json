@@ -1,6 +1,6 @@
 {
   "name": "agencyswarm-mcp",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A task management system for AI-driven development, forked from claude-task-master, with seamless Cursor integration.",
   "main": "index.js",
   "type": "module",
