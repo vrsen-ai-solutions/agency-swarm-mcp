@@ -4,39 +4,122 @@ globs: **/*
 alwaysApply: true
 ---
 
-# For agency-swarm framework-powered code, always follow the Agency Swarm Planning and Task Breakdown Protocol as described in [agency_swarm.mdc](mdc:.cursor/rules/agency_swarm.mdc).
+# Task Master Development Workflow for Agency Swarm
 
-# Task Master Development Workflow
+This guide outlines the process for using Task Master, guided by Agency Swarm principles. 
 
-This guide outlines the typical process for using Task Master to manage software development projects.
+## Initial Setup
 
-## Critical Safety Protocol: Confirmation Required
+Before starting any Agency Swarm development:
 
-**Crucially, before executing any high-stakes or potentially irreversible actions (such as publishing packages, running destructive database commands, performing mass deletions, or altering critical infrastructure), you MUST obtain explicit confirmation from the user.** Always propose the action clearly and wait for approval before proceeding.
+1. **Python Environment Setup:**
+   * Create and activate a Python virtual environment:
+     ```bash
+     python -m venv .venv
+     source .venv/bin/activate  # On Unix/macOS
+     # or
+     .venv\Scripts\activate  # On Windows
+     ```
+   * Install required dependencies:
+     ```bash
+     pip install agency-swarm
+     pip install -r requirements.txt  # If exists
+     ```
+   * Verify the environment is active
 
-## Primary Interaction: MCP Server vs. CLI
+## Agency Swarm Development Process
 
-Task Master offers two primary ways to interact:
+This process integrates Task Master capabilities with the specific needs of Agency Swarm development.
 
-1.  **MCP Server (Recommended for Integrated Tools)**:
-    - For AI agents and integrated development environments (like Cursor), interacting via the **MCP server is the preferred method**.
-    - The MCP server exposes Task Master functionality through a set of tools (e.g., `get_tasks`, `add_subtask`).
-    - This method offers better performance, structured data exchange, and richer error handling compared to CLI parsing.
-    - A comprehensive list and description of MCP tools and their corresponding CLI commands can be found in [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc).
+1.  **Understand Mission & Requirements (Gathering Details):**
+    *   Clarify the agency's overall purpose, specific goals, constraints, and operating environment.
+    *   **Ask clarifying questions:** If crucial information (Mission, Goals, Constraints, Key Roles, Core Tasks) is missing, **actively seek clarification from the user** before proceeding with detailed planning.
+    *   **PRD Generation:** If starting from scratch or user request, generate a Product Requirements Document (PRD). **Ensure the generated PRD follows the structure and format of `example_prd.txt`.**
+    *   Use `init` or `parse_prd` tools/commands to initialize `tasks.json` based on the PRD or initial user request.
 
-2.  **`task-master` CLI (For Users & Fallback)**:
-    - The global `task-master` command provides a user-friendly interface for direct terminal interaction.
-    - It can also serve as a fallback if the MCP server is inaccessible or a specific function isn't exposed via MCP.
-    - The CLI commands often mirror the MCP tools (e.g., `task-master list` corresponds to `get_tasks`).
-    - Refer to [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc) for a detailed command reference.
+2.  **Plan the Agency (High-Level Design):**
+    *   **Define Agent Roles:** Determine necessary agents, their responsibilities, expertise, and names (e.g., `ResearchAnalyst`, `CodeGenerator`).
+    *   **Design Agent Tools (Conceptual):** Specify the *purpose* of tools each agent needs (inputs, outputs, potential APIs/packages). Decide between Custom Tools, Built-in Tools, or OpenAPI Schemas.
+    *   **Map Communication:** Plan the directional `agency_chart` (who initiates contact with whom).
+    *   **Outline Shared Context:** Plan the `agency_manifesto.md` and any necessary `shared_files`.
+    *   **Conceptualize Folder Structure:** Visualize the project layout (`AgencyName/AgentName/`, `agency.py`, etc.).
+    *   **Advanced Features:** If implementing features not covered in `agency_swarm.mdc`, use Perplexity to search agency-swarm.ai documentation for guidance.
 
-## Standard Development Workflow Process
+3.  **Detailed Planning & Research (Task Breakdown Prep):**
+    *   **Research External APIs/Libraries:** Before breaking down implementation tasks:
+        * Use web search to find the best APIs, libraries, and documentation for required tool functionalities
+        * Research best practices and implementation patterns for chosen APIs/libraries
+        * Document key findings and limitations that will affect the implementation
+    *   Use `analyze_complexity --research` and `complexity_report` to assess tasks.
 
--   Start new projects by running `init` tool / `task-master init` or `parse_prd` / `task-master parse-prd --input='<prd-file.txt>'` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)) to generate initial tasks.json.
-    -   **Agency Swarm Note:** Consider an "Integration-First" approach: the initial plan should validate core data processing or critical API integrations early.
+4.  **Task Breakdown & Refinement:**
+    *   Use `expand_task` (potentially with `--research` or `--prompt` flags) to break high-level goals into smaller, actionable implementation tasks based on the research and plan.
+    *   **Task Structure Requirements:**
+        * Tasks MUST follow the integration-first approach: Tool Dev -> Agent Dev -> Testing -> Agency Run
+        * Each agent typically requires 3-16 tools (based on complexity and responsibilities)
+        * Each tool task MUST include testing requirements
+        * Dependencies must enforce tool-first development
+    *   Use Task Master tools (`add_task`, `add_subtask`, `add_dependency`, etc.) to refine the task list and dependencies.
+
+5.  **Develop Tools (Implementation):**
+    *   Create tools (`BaseTool` subclasses) as defined in the tasks. Follow guidelines in `agency_swarm.mdc`.
+    *   Focus on type safety (Pydantic Fields), clear docstrings, and robust `run` method logic.
+    *   **REQUIRED:** Include tool tests in the `if __name__ == "__main__":` section at the end of each tool file:
+        ```python
+        if __name__ == "__main__":
+            # Test the tool in isolation
+            tool = YourTool()
+            
+            # Test basic functionality
+            result = tool.run(input_param="test")
+            print(f"Test result: {result}")
+            
+            # Test edge cases
+            edge_case_result = tool.run(input_param="edge_case")
+            print(f"Edge case result: {edge_case_result}")
+            
+            # Add more specific test cases as needed
+        ```
+
+6.  **Develop Agents (Implementation):**
+    *   Create agent classes (`Agent` subclasses).
+    *   Write detailed `instructions.md` for each agent, defining persona, goals, workflow, and constraints.
+    *   Configure parameters (`tools`, `files_folder`, etc.).
+
+7.  **Implement Agency Orchestration (`agency.py`):**
+    *   Instantiate agents.
+    *   Define `agency_chart`.
+    *   Set `shared_instructions` (linking to `agency_manifesto.md`) and `shared_files`.
+
+8.  **Testing (Verification):**
+    *   **Test each Tool:** Before integrating, test individual tool files (`*.py` in `tools/` folders) thoroughly to ensure they function correctly in isolation. Verify inputs, outputs, and error handling. Use `TestBed` if applicable.
+    *   **Test Agent Interactions:** Once tools are verified, test communication and collaboration within the agency.
+    *   **Run `agency.py`:** Execute the main `agency.py` script to perform a full test of the agency's functionality when all agents and tools are complete.
+
+9.  **Iteration (Refinement based on Feedback):**
+    *   Based on testing results or user feedback (potentially gathered after step 2 or step 8), iterate on the design and implementation.
+    *   Use Task Master tools (`update_task`, `add_task`, `expand_task`, etc.) to adjust the plan and track changes.
+    *   Handle implementation drift using `update` or `update_task`.
+
+10. **Self-Improvement (Rule Updates):**
+    *   Review successful implementations and challenges.
+    *   Update rules in `cursor/rules/` to capture lessons learned, following `self_improve.mdc`.
+
+## Standard Task Master Workflow (Supporting the Above Process)
+
+*   Use `get_tasks` / `list` to view current status.
+*   Use `next_task` / `next` to determine the next logical step.
+*   Use `show <id>` for specific details.
+*   Mark tasks `done` using `set_task_status` / `set-status`.
+*   Manage dependencies with `add_dependency`/`remove_dependency` and `validate_dependencies`/`fix_dependencies`.
+*   Follow the iterative subtask implementation process (Explore -> Log Plan -> Verify Plan -> Implement -> Log Progress -> Complete) using `update_subtask`.
+
+
+## Standard Task Master Development Workflow Process
+
+-   Start new projects by running `init` tool / `task-master init` or `parse_prd` / `task-master parse-prd --input='<prd-file.txt>'` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)) to generate initial tasks.json
 -   Begin coding sessions with `get_tasks` / `task-master list` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)) to see current tasks, status, and IDs
 -   Determine the next task to work on using `next_task` / `task-master next` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)).
-    -   **Agency Swarm Note:** Start simple, then expand. Focus on one core capability or agent interaction first.
 -   Analyze task complexity with `analyze_complexity` / `task-master analyze-complexity --research` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)) before breaking down tasks
 -   Review complexity report using `complexity_report` / `task-master complexity-report` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)).
 -   Select tasks based on dependencies (all marked 'done'), priority level, and ID order
@@ -46,7 +129,6 @@ Task Master offers two primary ways to interact:
 -   Clear existing subtasks if needed using `clear_subtasks` / `task-master clear-subtasks --id=<id>` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)) before regenerating
 -   Implement code following task details, dependencies, and project standards
 -   Verify tasks according to test strategies before marking as complete (See [`tests.mdc`](mdc:.cursor/rules/tests.mdc))
-    -   **Agency Swarm Note:** Test individual agent tools thoroughly before testing the full agency interaction.
 -   Mark completed tasks with `set_task_status` / `task-master set-status --id=<id> --status=done` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc))
 -   Update dependent tasks when implementation differs from original plan using `update` / `task-master update --from=<id> --prompt="..."` or `update_task` / `task-master update-task --id=<id> --prompt="..."` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc))
 -   Add new tasks discovered during implementation using `add_task` / `task-master add-task --prompt="..."` (see [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc)).
@@ -204,6 +286,7 @@ Once a task has been broken down into subtasks using `expand_task` or similar me
     *   Stage the relevant code changes and any updated/new rule files (`git add .`).
     *   Craft a comprehensive Git commit message summarizing the work done for the subtask, including both code implementation and any rule adjustments.
     *   Execute the commit command directly in the terminal (e.g., `git commit -m 'feat(module): Implement feature X for subtask <subtaskId>\n\n- Details about changes...\n- Updated rule Y for pattern Z'`).
+    *   Consider if a Changeset is needed according to [`changeset.mdc`](mdc:.cursor/rules/changeset.mdc). If so, run `npm run changeset`, stage the generated file, and amend the commit or create a new one.
 
 10. **Proceed to Next Subtask:**
     *   Identify the next subtask in the dependency chain (e.g., using `next_task` / `task-master next`) and repeat this iterative process starting from step 1.
@@ -212,7 +295,8 @@ Once a task has been broken down into subtasks using `expand_task` or similar me
 
 - **Top-Level Function Search**:
     - Useful for understanding module structure or planning refactors.
-    - Use text search tools (like `grep` or `ripgrep`) with appropriate language-specific patterns to find top-level definitions (functions, classes, constants).
+    - Use grep/ripgrep to find exported functions/constants:
+      `rg "export (async function|function|const) \w+"` or similar patterns.
     - Can help compare functions between files during migrations or identify potential naming conflicts.
 
 ---

@@ -20,6 +20,16 @@ A task management system for AI-driven development with Claude, designed to work
 
 ## Quick Start
 
+#### Installation
+
+```bash
+# Install globally
+npm install -g agencyswarm-mcp
+
+# OR install locally within your project
+npm install agencyswarm-mcp
+```
+
 ### Option 1 | MCP (Recommended):
 
 MCP (Model Control Protocol) provides the easiest way to get started with Agency Swarm MCP directly in your editor.
@@ -65,16 +75,6 @@ Can you help me expand task 4?
 ```
 
 ### Option 2: Using Command Line
-
-#### Installation
-
-```bash
-# Install globally
-npm install -g agencyswarm-mcp
-
-# OR install locally within your project
-npm install agencyswarm-mcp
-```
 
 #### Initialize a new project
 

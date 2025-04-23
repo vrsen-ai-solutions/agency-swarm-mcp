@@ -1,47 +1,39 @@
-<context>
-# Overview  
-[Provide a high-level overview of your product here. Explain what problem it solves, who it's for, and why it's valuable.]
+# [Agency Name]
 
-# Core Features  
-[List and describe the main features of your product. For each feature, include:
-- What it does
-- Why it's important
-- How it works at a high level]
+---
 
-# User Experience  
-[Describe the user journey and experience. Include:
-- User personas
-- Key user flows
-- UI/UX considerations]
-</context>
-<PRD>
-# Technical Architecture  
-[Outline the technical implementation details:
-- System components
-- Data models
-- APIs and integrations
-- Infrastructure requirements]
+- **Purpose:** [A high-level description of what the agency aims to achieve, its target market, and the value it offers to its clients.]
+- **Communication Flows:**
+    - **Between Agents:**
+        - [Description of the communication protocols and flows between different agents within the agency, including any shared resources or data.]
+        - **Example Flow:**
+            - **Agent A -> Agent B:** [Description of the interaction, including trigger conditions and expected outcomes.]
+            - **Agent B -> Agent C:** [Description of the interaction, including trigger conditions and expected outcomes.]
+    - **Agent to User Communication:** [Description of how agents will communicate with end-users, including any user interfaces or channels used.]
+- **Data for testing**:
+    
+    []()
+    
 
-# Development Roadmap  
-[Break down the development process into phases:
-- MVP requirements
-- Future enhancements
-- Do not think about timelines whatsoever -- all that matters is scope and detailing exactly what needs to be build in each phase so it can later be cut up into tasks]
+---
 
-# Logical Dependency Chain
-[Define the logical order of development:
-- Which features need to be built first (foundation)
-- Getting as quickly as possible to something usable/visible front end that works
-- Properly pacing and scoping each feature so it is atomic but can also be built upon and improved as development approaches]
+## Agent Name
 
-# Risks and Mitigations  
-[Identify potential risks and how they'll be addressed:
-- Technical challenges
-- Figuring out the MVP that we can build upon
-- Resource constraints]
+### **Role within the Agency**
 
-# Appendix  
-[Include any additional information:
-- Research findings
-- Technical specifications]
-</PRD>
+[Description of the agent's specific role and responsibilities within the agency.]
+
+## Knowledge
+
+[]()
+
+### Tools
+
+- **ToolName:**
+    - **Description**: [Description on what this tool should do and how it will be used]
+    - **Inputs**:
+        - [name] (type) - description
+    - **Validation**:
+        - [Condition] - description
+    - **Core Functions:** [List of the main functions the tool must perform.]
+    - **APIs**:
